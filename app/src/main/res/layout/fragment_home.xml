@@ -7,36 +7,47 @@
     tools:context=".ui.home.HomeFragment">
 
 
-    <ImageView
-        android:id="@+id/Home_banner"
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/home_banner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <ImageView
-        android:id="@+id/Home_popcorn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/popcorn"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Movie Tech"
-        android:textColor="#FFFFFF"
-        android:fontFamily="@font/lovelo_line"
-        android:textSize="34.1sp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toEndOf="@+id/Home_popcorn"
-        app:layout_constraintTop_toTopOf="parent"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:background="@drawable/home_banner"
+                >
+                <ImageView
+                    android:id="@+id/Home_popcorn2"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/popcorn"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Movie Tech"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/lovelo_line"
+                    android:textSize="34.1sp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/Home_popcorn"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </LinearLayout>
 
         <LinearLayout
             android:id="@+id/Home_search_box"
@@ -82,9 +93,9 @@
         android:text="Search by"
         android:fontFamily="@font/poppins_medium"
         android:textAllCaps="false"
-        android:textSize="8sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:textSize="11sp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="-40dp"
         app:layout_constraintEnd_toEndOf="@+id/Home_search_box"
         app:layout_constraintTop_toBottomOf="@+id/Home_search_box" />
 
@@ -129,8 +140,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_action"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -139,11 +150,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_action" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Action"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -159,8 +170,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_adventure"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -169,11 +180,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_adventure" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Adventure"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -189,8 +200,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_animation"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -199,11 +210,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_animation" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Animation"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -218,8 +229,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_comedy"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -228,11 +239,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_comedy" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Comedy"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -248,8 +259,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_crime"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -259,11 +270,11 @@
                     android:src="@drawable/genre_crime"
                     android:contentDescription="crime" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Crime"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -279,8 +290,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_documentary"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -289,11 +300,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_documentary" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Documentary"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -308,8 +319,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_drama"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -318,11 +329,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_drama" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Drama"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -337,8 +348,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_family"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -347,11 +358,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_family" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Family"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -366,8 +377,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_fantasy"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -376,11 +387,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_fantasy" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Fantasy"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -395,8 +406,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_history"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -405,11 +416,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_history" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="History"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -424,8 +435,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_horror"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -434,11 +445,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_horror" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Horror"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -453,8 +464,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_music"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -463,11 +474,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_music" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Music"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -482,8 +493,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_mystery"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -492,11 +503,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_mystery" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Mystery"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -511,8 +522,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_romance"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -521,11 +532,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_romance" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Romance"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -540,8 +551,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_science_fiction"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -550,11 +561,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_science_fiction" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Science Fiction"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -569,8 +580,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_tv_movie"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -579,11 +590,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_tv_movie" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="TV Movie"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -598,8 +609,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_thriller"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -608,11 +619,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_thriller" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Thriller"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -627,8 +638,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_war"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -637,11 +648,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_war" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="War"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -656,8 +667,8 @@
 
                 <ImageButton
                     android:id="@+id/Home_genre_western"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -666,11 +677,11 @@
                     android:background="@drawable/button_box"
                     android:src="@drawable/genre_western" />
                 <TextView
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Western"
                     android:textColor="#111111"
-                    android:textSize="7sp"
+                    android:textSize="11sp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="center"
                     android:gravity="center"
@@ -697,94 +708,89 @@
     <LinearLayout
         android:id="@+id/Home_movies_button"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="52dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Home_text_movies">
 
-        <Button
-            android:id="@+id/Home_movies_all"
-            android:layout_width="45dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="All"
-            android:textAllCaps="false"
-            android:textColor="#ffffff"
-            android:textSize="7sp"/>
-        <Button
-            android:id="@+id/Home_movies_newest"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Newest"
-            android:textAllCaps="false"
-            android:textColor="#ffffff"
-            android:textSize="7sp" />
-        <Button
-            android:id="@+id/Home_movies_popular"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Popular"
-            android:textAllCaps="false"
-            android:textColor="#ffffff"
-            android:textSize="7sp" />
-        <Button
-            android:id="@+id/Home_movies_trend"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Trend"
-            android:textAllCaps="false"
-            android:textColor="#ffffff"
-            android:textSize="7sp" />
+
+                <RadioGroup
+                    android:id="@+id/Home_movies_radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:checkedButton="@id/Home_movies_popular"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/Home_movies_popular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Popular"
+                        android:textAllCaps="false"
+                        android:textColor="@color/purple_200"
+                        android:textSize="11sp"/>
+                    <RadioButton
+                        android:id="@+id/Home_movies_top_rated"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Top Rated"
+                        android:textAllCaps="false"
+                        android:textColor="@color/purple_200"
+                        android:textSize="11sp" />
+                    <RadioButton
+                        android:id="@+id/Home_movies_upcoming"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Upcoming"
+                        android:textAllCaps="false"
+                        android:textColor="@color/purple_200"
+                        android:textSize="11sp" />
+
+                    <RadioButton
+                        android:id="@+id/Home_movies_nowPlaying"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Now Playing"
+                        android:textAllCaps="false"
+                        android:textColor="@color/purple_200"
+                        android:textSize="11sp"/>
+
+                </RadioGroup>
     </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/HomeMoviesRecycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/Home_movies_button">
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:scrollbars="vertical"
+        />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Home_movies_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            android:clipToPadding="false"
-            android:paddingBottom="16dp"
-            android:orientation="vertical"
-            tools:listitem="@layout/movie_view" />
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
