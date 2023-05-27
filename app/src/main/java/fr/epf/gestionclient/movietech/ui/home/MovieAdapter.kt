@@ -39,11 +39,19 @@ class MovieAdapter(var movies: List<Movie>, val context: Context) : RecyclerView
         val textViewTitle = view.findViewById<TextView>(R.id.movie_view_title)
         textViewTitle.text = movie.title
         val imageView = view.findViewById<ImageView>(R.id.movie_view_imageview)
+        if (movie.poster_path != null){
         val imageUrl = "https://image.tmdb.org/t/p/original" + movie.poster_path
-        Picasso.get().load(imageUrl).into(imageView)
+        Picasso.get().load(imageUrl).into(imageView)}
+        else{
+            imageView.setImageResource(R.drawable.baseline_local_movies_24)
+        }
         val ratingBar = view.findViewById<RatingBar>(R.id.movie_view_ratingbar)
         ratingBar.rating = movie.vote_average.toFloat()/2
         val textViewDate = view.findViewById<TextView>(R.id.movie_view_datetext)
-        textViewDate.text = movie.release_date.subSequence(0,4)
+        if (movie.release_date.length > 4){
+        textViewDate.text = movie.release_date.subSequence(0,4)}
+        else{
+            textViewDate.text = "N/A"
+        }
     }
 }

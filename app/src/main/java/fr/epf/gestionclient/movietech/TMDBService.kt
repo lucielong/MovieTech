@@ -36,6 +36,13 @@ interface TMDBService {
         @Query("language") language: String,
         @Query("page") page: Int
     ): Response<MovieResponse>
+
+    @GET("search/movie")
+    suspend fun getSearchMovies(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("query") query: String
+    ): Response<MovieResponse>
 }
 
 
