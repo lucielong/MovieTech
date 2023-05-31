@@ -5,18 +5,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.squareup.picasso.Picasso
 import fr.epf.gestionclient.movietech.Movie
 import fr.epf.gestionclient.movietech.R
+import fr.epf.gestionclient.movietech.ui.details.OnMovieClickListener
 
 class MovieViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
 class MovieAdapter(var movies: List<Movie>, val context: Context) : RecyclerView.Adapter<MovieViewHolder>() {
+
 
 
     fun updateMovies(newMovies: List<Movie>) {
@@ -53,5 +61,22 @@ class MovieAdapter(var movies: List<Movie>, val context: Context) : RecyclerView
         else{
             textViewDate.text = "N/A"
         }
+
+        //Details button to navigate to DetailsFragment
+        val buttonDetails = view.findViewById<Button>(R.id.movie_view_details_button)
+        buttonDetails.setOnClickListener {
+            val navController = Navigation.findNavController(view)
+
+            // get the movie id
+            val movieId = movie.id
+
+            val bundle = bundleOf("movieId" to movieId)
+            //view.findNavController().navigate(R.id.action_get_details, bundle)
+            navController.navigate(R.id.action_get_details, bundle)
+
+        }
+
+
+
     }
 }
