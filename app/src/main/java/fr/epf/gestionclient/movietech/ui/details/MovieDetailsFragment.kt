@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
+import com.squareup.picasso.Picasso
 import fr.epf.gestionclient.movietech.Movie
 import fr.epf.gestionclient.movietech.MovieDetails
 import fr.epf.gestionclient.movietech.R
@@ -95,10 +96,17 @@ class MovieDetailsFragment : Fragment() {
                 if (response.isSuccessful) {
                     val movieDetails = response.body()
                     textViewTitle.text = movieDetails?.title
-                    textViewRuntime.text = "${movieDetails?.runtime} minutes"
+                    textViewRuntime.text = "${movieDetails?.runtime} min"
                     textViewOverview.text = movieDetails?.overview
                     textViewReleaseDate?.text = movieDetails?.release_date
                     ratingBar.rating = movieDetails?.vote_average?.toFloat()?.div(2) ?: 0f
+                    val posterUrl = "https://image.tmdb.org/t/p/original" + movieDetails?.poster_path
+                    Picasso.get()
+                        .load(posterUrl)
+                        .into(affiche)
+
+                    //val imageUrl = "https://image.tmdb.org/t/p/original" + movieDetails?.poster_path
+                    //affiche.imageView= Picasso.get().load(imageUrl).into(affiche).imageAlpha)}
                     //affiche.setImageResource(R.drawable.ic_launcher_background)
                 } else {
                     Log.e("TAG", "Request failed: ${response.code()} - ${response.message()}")
