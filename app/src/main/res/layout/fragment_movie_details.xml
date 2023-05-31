@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +9,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
@@ -181,7 +180,7 @@
 
                 <TextView
                     android:id="@+id/details_overview_title"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="0dp"
@@ -193,14 +192,16 @@
 
                 <TextView
                     android:id="@+id/details_overview_body"
-                    android:layout_width="350dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="80dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Ce film est nul à chier."
+                    android:text="esque diam volutpat commodo sed egestas egestas fringilla phasellus. Nunc sed velit dignissim sodales ut eu sem integer. Viverra nam libero justo laoreet. Venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus. Viverra vitae congue eu consequat ac felis donec et. Urna porttitor rhoncus dolor purus non enim praesent elementum facilisis. In nisl nisi scelerisque eu ultrices vitae auctor. Cursus turpis massa tincidunt dui ut ornare lectus."
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:gravity="fill"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -208,4 +209,4 @@
     </androidx.core.widget.NestedScrollView>
 
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package fr.epf.gestionclient.movietech.ui.home
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -16,11 +17,15 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.mlkit.vision.barcode.BarcodeScannerOptions
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
+import fr.epf.gestionclient.movietech.MovieDetails
+import fr.epf.gestionclient.movietech.R
 import fr.epf.gestionclient.movietech.databinding.ActivityQrcodeBinding
+import fr.epf.gestionclient.movietech.ui.details.MovieDetailsFragment
 import java.io.File
 
 class QRCodeActivity : AppCompatActivity() {
@@ -70,22 +75,26 @@ class QRCodeActivity : AppCompatActivity() {
                                 val valueType = barcode.valueType
                                 // See API reference for complete list of supported types
                                 when (valueType) {
-                                    Barcode.TYPE_WIFI -> {
-                                        val ssid = barcode.wifi!!.ssid
-                                        val password = barcode.wifi!!.password
-                                        val type = barcode.wifi!!.encryptionType
+                                    Barcode.TYPE_TEXT -> {
+                                        val intValue = barcode.rawValue?.toIntOrNull()
+                                        if (intValue != null) {
+                                            Log.d(Constants.TAG, "onSuccess: $intValue")
+                                            val bundle = bundleOf("movieId" to intValue)
+                                            val navHostFragment = supportFragmentManager.findFragmentById(R.id.navigation_details)
+                                            Log.d(Constants.TAG, "navHostFragment: $navHostFragment")
+                                            val navController = navHostFragment?.findNavController()
+                                            Log.d(Constants.TAG, "navController: $navController")
+                                        }
                                     }
                                     Barcode.TYPE_URL -> {
                                         val title = barcode.url!!.title
                                         val url = barcode.url!!.url
-                                        Log.d(Constants.TAG, "url: $url")
                                     }
                                 }
                             }
                         }
                         .addOnFailureListener {
-                            // Task failed with an exception
-                            // ...
+                            Log.d(Constants.TAG, "onFailure: ${it.message}")
                         }
                 }
             })
