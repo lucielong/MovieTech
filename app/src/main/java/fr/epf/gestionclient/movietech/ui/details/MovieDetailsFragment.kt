@@ -37,7 +37,32 @@ class MovieDetailsFragment : Fragment() {
     private lateinit var ratingBar: RatingBar
     private lateinit var affiche: ImageView
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflater la vue à partir du fichier XML du fragment
+        val view = inflater.inflate(R.layout.fragment_movie_details, container, false)
 
+        // Initiate the views
+        textViewTitle = view.findViewById<TextView>(R.id.details_movie_title)
+
+        textViewGenre = view.findViewById<TextView>(R.id.details_genre)
+        textViewRuntime = view.findViewById<TextView>(R.id.details_runtime)
+        textViewReleaseDate = view.findViewById<TextView>(R.id.details_release_date)
+        textViewAverageRating = view.findViewById<TextView>(R.id.details_average_rating)
+        textViewOverview = view.findViewById<TextView>(R.id.details_overview_body)
+        ratingBar = view.findViewById<RatingBar>(R.id.details_ratingbar)
+        affiche = view.findViewById<ImageView>(R.id.details_imageview)
+
+        val movieID = requireArguments().getInt("movieId")
+
+        fetchMovieDetails(movieID)
+
+        return view
+
+    }
 
     fun fetchMovieDetails(movieID: Int) {
 
@@ -112,32 +137,7 @@ class MovieDetailsFragment : Fragment() {
 
     }*/
 
-        override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-        ): View? {
-            // Inflater la vue à partir du fichier XML du fragment
-            val view = inflater.inflate(R.layout.fragment_movie_details, container, false)
 
-            // Initiate the views
-            textViewTitle = view.findViewById<TextView>(R.id.details_movie_title)
-
-            textViewGenre = view.findViewById<TextView>(R.id.details_genre)
-            textViewRuntime = view.findViewById<TextView>(R.id.details_runtime)
-            textViewReleaseDate = view.findViewById<TextView>(R.id.details_release_date)
-            textViewAverageRating = view.findViewById<TextView>(R.id.details_average_rating)
-            textViewOverview = view.findViewById<TextView>(R.id.details_overview_body)
-            ratingBar = view.findViewById<RatingBar>(R.id.details_ratingbar)
-            affiche = view.findViewById<ImageView>(R.id.details_imageview)
-
-            val movieID = requireArguments().getInt("movieId")
-
-            fetchMovieDetails(movieID)
-
-            return view
-
-        }
 }
 
 

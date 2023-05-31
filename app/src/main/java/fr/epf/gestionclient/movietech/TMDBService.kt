@@ -79,7 +79,7 @@ data class Movie(
 data class MovieDetails(
     val adult: Boolean,
     val backdrop_path: String,
-    val belongs_to_collection : String,
+    val belongs_to_collection : Any?,
     val budget: Int,
     val genre_ids: List<Int>,
     val homepage : String,
@@ -90,12 +90,12 @@ data class MovieDetails(
     val overview: String,
     val popularity: Double,
     val poster_path: String,
-    val production_companies_ids : List<Int>,
-    val production_countries : List<Int>,
+    val production_companies_ids : List<ProductionCompany>,
+    val production_countries : List<ProductionCountry>,
     val release_date: String,
     val revenue : Int,
     val runtime : Int,
-    val spoken_languages : List<Int>,
+    val spoken_languages : List<SpokenLanguage>,
     val status : String,
     val tagline : String,
     val title: String,
@@ -103,3 +103,21 @@ data class MovieDetails(
     val vote_average: Double,
     val vote_count: Int
 )
+data class ProductionCompany(
+    val id: Int,
+    val logo_path: String?,
+    val name: String,
+    val origin_country: String
+)
+
+data class ProductionCountry(
+    val iso_3166_1: String,
+    val name: String
+)
+
+data class SpokenLanguage(
+    val english_name: String,
+    val iso_639_1: String,
+    val name: String
+)
+

@@ -38,7 +38,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val binding = _binding ?: return null
         val root: View = binding.root
@@ -94,9 +93,6 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_qrcode)
         }
         synchro()
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            // Handle the observed text change here
-        }
 
         return root
     }

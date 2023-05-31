@@ -1,7 +1,6 @@
 package fr.epf.gestionclient.movietech.ui.home
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +9,11 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.squareup.picasso.Picasso
 import fr.epf.gestionclient.movietech.Movie
 import fr.epf.gestionclient.movietech.R
-import fr.epf.gestionclient.movietech.ui.details.OnMovieClickListener
 
 class MovieViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
