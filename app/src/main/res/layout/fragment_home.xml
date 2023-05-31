@@ -75,7 +75,7 @@
                         android:layout_marginStart="0dp"
                         android:iconifiedByDefault="false"
                         android:queryBackground="@font/poppins_medium"
-                        android:queryHint="Rechercher un film"
+                        android:queryHint="Search a movie"
                         app:layout_constraintStart_toStartOf="@+id/Home_search_box" />
 
                     <ImageButton

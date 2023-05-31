@@ -1,33 +1,16 @@
 package fr.epf.gestionclient.movietech.ui.home
 
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import androidx.camera.core.Camera
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.mlkit.vision.barcode.BarcodeScannerOptions
-import com.google.mlkit.vision.barcode.BarcodeScanning
-import com.google.mlkit.vision.barcode.common.Barcode
-import com.google.mlkit.vision.common.InputImage
 import fr.epf.gestionclient.movietech.Movie
 import fr.epf.gestionclient.movietech.R
 import fr.epf.gestionclient.movietech.TMDBService
@@ -36,8 +19,6 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.File
-import androidx.camera.view.PreviewView
 
 
 
@@ -45,21 +26,12 @@ class HomeFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
     lateinit var movieAdapter: MovieAdapter
-    private lateinit var camera: Camera
-    private lateinit var cameraSelector: CameraSelector
-    private lateinit var preview: Preview
-    private lateinit var imageCapture: ImageCapture
-
 
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    companion object {
-        private const val CAMERA_PERMISSION_REQUEST_CODE = 100
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -177,7 +149,6 @@ class HomeFragment : Fragment() {
                 if (response.isSuccessful) {
                     val movieResponse = response.body()
                     val movies = movieResponse?.results ?: emptyList()
-
                     updateMovieList(movies)
                 } else {
                     Log.e("TAG", "Request failed: ${response.code()} - ${response.message()}")
