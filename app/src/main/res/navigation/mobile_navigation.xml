@@ -63,12 +63,20 @@
         android:label="{query}"
         tools:layout="@layout/fragment_search" />
 
-    <activity
+    <fragment
         android:id="@+id/qr_code_activity"
-        android:name="fr.epf.gestionclient.movietech.ui.home.QRCodeActivity"
+        android:name="fr.epf.gestionclient.movietech.ui.home.QRCodeFragment"
         android:label="QRCode"
-        tools:layout="@layout/activity_qrcode"
-        />
+        app:action="go_details"
+        tools:layout="@layout/fragment_qrcode" >
+        <action
+            android:id="@+id/action_get_details_from_qrcode"
+            app:destination="@id/navigation_details"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 
 
 </navigation>

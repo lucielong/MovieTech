@@ -28,11 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.QRCodeActivity"
-            android:exported="true"
-            android:label="QRCode"
-            tools:targetApi="31"
-            />
+
     </application>
 
 </manifest>
