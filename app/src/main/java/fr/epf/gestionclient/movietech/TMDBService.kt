@@ -77,6 +77,10 @@ interface TMDBService {
         @Query("with_genres") with_genres: String
     ): Response<MovieResponse>
 
+    @GET("genre/movie/list")
+    suspend fun getGenre(
+        @Query("api_key") apiKey: String
+    ): Response<GenreResponse>
 
 }
 
@@ -176,5 +180,9 @@ data class FavoriteBody(
     val media_type: String,
     val media_id: Int,
     val favorite: Boolean
+)
+
+data class GenreResponse(
+    val genres: List<Genre>
 )
 

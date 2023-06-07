@@ -59,6 +59,16 @@ class MovieAdapter(var movies: List<Movie>, val context: Context) : RecyclerView
         else{
             textViewDate.text = "N/A"
         }
+        imageView.setOnClickListener{
+            val navController = Navigation.findNavController(view)
+
+            // get the movie id
+            val movieId = movie.id
+
+            val bundle = bundleOf("movieId" to movieId)
+            //view.findNavController().navigate(R.id.action_get_details, bundle)
+            navController.navigate(R.id.action_get_details, bundle)
+        }
 
         //Details button to navigate to DetailsFragment
         val buttonDetails = view.findViewById<Button>(R.id.movie_view_details_button)

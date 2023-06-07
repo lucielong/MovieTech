@@ -87,6 +87,102 @@ class HomeFragment : Fragment() {
         binding.HomeQrcodeButton.setOnClickListener {
             findNavController().navigate(R.id.action_qrcode)
         }
+        binding.HomeGenreAction.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Action")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreAdventure.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Adventure")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreAnimation.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Animation")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreComedy.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Comedy")
+            Log.d("HomeFragment", with_genres.toString())
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreCrime.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Crime")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreDocumentary.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Documentary")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreDrama.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Drama")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreFamily.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Family")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreFantasy.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Fantasy")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreHistory.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "History")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreHorror.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Horror")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreMusic.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Music")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreMystery.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Mystery")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreRomance.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Romance")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreScienceFiction.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Science Fiction")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreTvMovie.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "TV Movie")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreThriller.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Thriller")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreWar.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "War")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
+        binding.HomeGenreWestern.setOnClickListener {
+            val with_genres = Bundle()
+            with_genres.putString("with_genres", "Western")
+            findNavController().navigate(R.id.action_genre, with_genres)
+        }
 
         synchro()
         return root

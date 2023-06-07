@@ -1,5 +1,7 @@
 package fr.epf.gestionclient.movietech.ui.details
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -83,7 +85,8 @@ class MovieDetailsFragment : Fragment() {
         favbutton = view.findViewById<ImageButton>(R.id.details_fav_button)
 
         val movieID = requireArguments().getInt("movieId")
-        synchro(movieID)
+        lifecycleScope.launch { synchro(movieID) }
+
 
         return view
 
@@ -91,7 +94,9 @@ class MovieDetailsFragment : Fragment() {
 
     private suspend fun getMovieDetails(movieID: Int): MovieDetails? {
         return withContext(Dispatchers.IO) {
-            val response = TMDBService.getMovieDetails(movieID, apiKey, "en-US", "credits")
+            val response = withContext(Dispatchers.IO) {
+                TMDBService.getMovieDetails(movieID, apiKey, "en-US", "credits")
+            }
             if (response.isSuccessful) {
                 response.body()
             } else {
@@ -129,19 +134,19 @@ class MovieDetailsFragment : Fragment() {
         if(movie != null){
             favoritebody = FavoriteBody("movie", movieID, false)
             addFavoriteMovies(favoritebody)
-            favbutton.background = resources.getDrawable(R.drawable.baseline_favorite_border_24)
+            favbutton.setBackgroundResource(R.drawable.baseline_favorite_border_24)
         } else{
             favoritebody = FavoriteBody("movie", movieID, true)
             addFavoriteMovies(favoritebody)
-            favbutton.background = resources.getDrawable(R.drawable.baseline_favorite_24)
+            favbutton.setBackgroundResource(R.drawable.baseline_favorite_24)
         }
     }
 
     private suspend fun checkFavorites(movieID: Int){
         val favoriteMovies = getFavoriteMovies(movieID)
         val movie = favoriteMovies?.results?.find { it.id == movieID }
-        if(movie != null){ favbutton.background = resources.getDrawable(R.drawable.baseline_favorite_24) }
-        else{favbutton.background = resources.getDrawable(R.drawable.baseline_favorite_border_24)}
+        if(movie != null){ favbutton.setBackgroundResource(R.drawable.baseline_favorite_24) }
+        else{favbutton.setBackgroundResource(R.drawable.baseline_favorite_border_24)}
     }
 
 
@@ -167,5 +172,6 @@ class MovieDetailsFragment : Fragment() {
                 null
             }
         }
-    }}
+    }
+}
 

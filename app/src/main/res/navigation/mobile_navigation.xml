@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_search"
-            app:destination="@id/search_activity"
+            app:destination="@id/search_fragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -23,7 +23,7 @@
         </action>
         <action
             android:id="@+id/action_qrcode"
-            app:destination="@id/qr_code_activity"
+            app:destination="@id/qr_code_fragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -35,11 +35,21 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" >
         <argument
             android:name="movieId"
             app:argType="integer" />
-
+        </action>
+        <action
+            android:id="@+id/action_genre"
+            app:destination="@id/genre_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <argument
+            android:name="with_genres"
+            app:argType="string" />
     </fragment>
 
 
@@ -66,7 +76,7 @@
 </fragment>
 
     <fragment
-        android:id="@+id/search_activity"
+        android:id="@+id/search_fragment"
         android:name="fr.epf.gestionclient.movietech.ui.home.SearchFragment"
         android:label="{query}"
         tools:layout="@layout/fragment_search"
@@ -81,7 +91,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/qr_code_activity"
+        android:id="@+id/qr_code_fragment"
         android:name="fr.epf.gestionclient.movietech.ui.home.QRCodeFragment"
         android:label="QRCode"
         app:action="go_details"
@@ -94,6 +104,21 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
+
+    <fragment
+        android:id="@+id/genre_fragment"
+        android:name="fr.epf.gestionclient.movietech.ui.home.GenreFragment"
+        android:label="{with_genres}"
+        tools:layout="@layout/fragment_genre">
+        <action
+            android:id="@+id/action_get_details"
+            app:destination="@id/navigation_details"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
 
 
 </navigation>
