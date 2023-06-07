@@ -28,6 +28,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
+import org.w3c.dom.Text
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -44,6 +45,7 @@ class MovieDetailsFragment : Fragment() {
     private lateinit var affiche: ImageView
     private lateinit var favbutton: ImageButton
     private lateinit var favoritebody: FavoriteBody
+    private lateinit var language : TextView
 
     val apiKey = "6f195923c63346a8d0677974810d5255"
     private val accountId = 19649775
@@ -85,6 +87,7 @@ class MovieDetailsFragment : Fragment() {
         ratingBar = view.findViewById<RatingBar>(R.id.details_ratingbar)
         affiche = view.findViewById<ImageView>(R.id.details_imageview)
         favbutton = view.findViewById<ImageButton>(R.id.details_fav_button)
+        language = view.findViewById<TextView>(R.id.details_language)
 
         val movieID = requireArguments().getInt("movieId")
         lifecycleScope.launch { synchro(movieID) }
@@ -135,6 +138,8 @@ class MovieDetailsFragment : Fragment() {
                     addOrRemoveFavorite(movieID)
                 }
             }
+            language.text = movieDetails?.original_language?.uppercase()
+            textViewAverageRating.text = movieDetails?.vote_average.toString()
         }
     }
 
