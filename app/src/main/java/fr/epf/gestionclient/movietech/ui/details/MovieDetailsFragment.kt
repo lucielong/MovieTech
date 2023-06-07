@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.squareup.picasso.Picasso
 import fr.epf.gestionclient.movietech.FavoriteBody
 import fr.epf.gestionclient.movietech.MovieDetails
@@ -74,7 +77,6 @@ class MovieDetailsFragment : Fragment() {
 
         // Initiate the views
         textViewTitle = view.findViewById<TextView>(R.id.details_movie_title)
-
         textViewGenre = view.findViewById<TextView>(R.id.details_genre)
         textViewRuntime = view.findViewById<TextView>(R.id.details_runtime)
         textViewReleaseDate = view.findViewById<TextView>(R.id.details_release_date)
@@ -87,6 +89,14 @@ class MovieDetailsFragment : Fragment() {
         val movieID = requireArguments().getInt("movieId")
         lifecycleScope.launch { synchro(movieID) }
 
+        val buttonRecommendations = view.findViewById<Button>(R.id.recommendations_button)
+        buttonRecommendations.setOnClickListener {
+            val navController = Navigation.findNavController(view)
+
+            val bundle = bundleOf("movieId" to movieID)
+            navController.navigate(R.id.action_get_recommendations, bundle)
+
+        }
 
         return view
 
@@ -173,5 +183,7 @@ class MovieDetailsFragment : Fragment() {
             }
         }
     }
+
+
 }
 

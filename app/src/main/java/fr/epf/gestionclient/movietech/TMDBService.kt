@@ -82,8 +82,19 @@ interface TMDBService {
         @Query("api_key") apiKey: String
     ): Response<GenreResponse>
 
+    @GET("movie/{movie_id}/recommendations")
+    suspend fun getRecommendations(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("page") page: Int
+    ): Response<RecommendationsResponse>
+
 }
 
+data class RecommendationsResponse(
+    val results: List<MovieRecommendations>,
+)
 
 data class MovieResponse(
     val results: List<Movie>
@@ -132,6 +143,25 @@ data class MovieDetails(
     val vote_average: Double,
     val vote_count: Int
 )
+
+data class MovieRecommendations(
+    val adult: Boolean,
+    val backdrop_path: String,
+    val id: Int,
+    val title: String,
+    val original_language: String,
+    val original_title: String,
+    val overview: String,
+    val poster_path: String,
+    val media_type: String,
+    val genre_ids: List<Int>,
+    val popularity: Double,
+    val release_date: String,
+    val video: Boolean,
+    val vote_average: Double,
+    val vote_count: Int
+)
+
 data class ProductionCompany(
     val id: Int,
     val logo_path: String?,
