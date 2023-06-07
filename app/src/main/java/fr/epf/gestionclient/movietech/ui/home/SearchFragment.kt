@@ -21,6 +21,24 @@ class SearchFragment : Fragment(){
     lateinit var recyclerView: RecyclerView
     lateinit var movieAdapter: MovieAdapter
     private var _binding: FragmentSearchBinding? = null
+    val apiKey = "6f195923c63346a8d0677974810d5255"
+
+    val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor { chain ->
+            val request = chain.request().newBuilder()
+                .addHeader("accept", "application/json")
+                .build()
+            chain.proceed(request)
+        }
+        .build()
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://api.themoviedb.org/3/")
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val TMDBService = retrofit.create(TMDBService::class.java)
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -52,24 +70,7 @@ class SearchFragment : Fragment(){
 
 
     private fun synchro(valeur: String) {
-        val apiKey = "6f195923c63346a8d0677974810d5255"
 
-        val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor { chain ->
-                val request = chain.request().newBuilder()
-                    .addHeader("accept", "application/json")
-                    .build()
-                chain.proceed(request)
-            }
-            .build()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val TMDBService = retrofit.create(TMDBService::class.java)
 
         runBlocking {
             try {

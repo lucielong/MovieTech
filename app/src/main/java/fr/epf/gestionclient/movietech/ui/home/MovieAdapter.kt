@@ -39,7 +39,11 @@ class MovieAdapter(var movies: List<Movie>, val context: Context) : RecyclerView
         val movie : Movie = movies[position]
         val view = holder.itemView
         val textViewTitle = view.findViewById<TextView>(R.id.movie_view_title)
-        textViewTitle.text = movie.title
+        if (movie.title.length > 40) {
+            textViewTitle.text = "${movie.title.subSequence(0,40)} ..."
+        }
+        else{
+        textViewTitle.text = movie.title}
         val imageView = view.findViewById<ImageView>(R.id.movie_view_imageview)
         if (movie.poster_path != null){
         val imageUrl = "https://image.tmdb.org/t/p/original" + movie.poster_path

@@ -7,6 +7,10 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import com.google.gson.annotations.SerializedName
 import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.Header
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface TMDBService {
@@ -53,6 +57,27 @@ interface TMDBService {
         @Query("append_to_response") appendToResponse: String
     ): Response<MovieDetails>
 
+    @POST("account/{accountId}/favorite")
+    suspend fun addFavoriteMovies(
+        @Path("accountId") accountId: Int,
+        @Header("Authorization") authorization: String,
+        @Body body: FavoriteBody
+    ): Response<FavoriteResponse>
+
+    @GET("account/{accountId}/favorite/movies")
+    suspend fun getFavoriteMovies(
+        @Path("accountId") accountId: Int,
+        @Header("Authorization") authorization: String
+    ): Response<MovieResponse>
+
+    @GET("discover/movie")
+    suspend fun getMoviesBy(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("with_genres") with_genres: String
+    ): Response<MovieResponse>
+
+
 }
 
 
@@ -81,7 +106,7 @@ data class MovieDetails(
     val backdrop_path: String,
     val belongs_to_collection : Any?,
     val budget: Int,
-    val genre_ids: List<Int>,
+    val genre_ids: List<Genre>,
     val homepage : String,
     val id: Int,
     val imdb_id : String,
@@ -119,5 +144,37 @@ data class SpokenLanguage(
     val english_name: String,
     val iso_639_1: String,
     val name: String
+)
+
+data class TokenResponse(
+    val success: Boolean,
+    val expires_at: String,
+    val request_token: String
+)
+
+data class SessionRequest(
+    val request_token: String
+)
+
+data class SessionResponse(
+    val success: Boolean,
+    val session_id: String
+)
+
+
+data class FavoriteResponse(
+    val status_code: Int,
+    val status_message: String
+)
+
+data class Genre(
+    val id: Int,
+    val name: String
+)
+
+data class FavoriteBody(
+    val media_type: String,
+    val media_id: Int,
+    val favorite: Boolean
 )
 

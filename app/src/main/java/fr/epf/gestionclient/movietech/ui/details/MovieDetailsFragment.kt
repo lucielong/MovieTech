@@ -6,23 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import com.squareup.picasso.Picasso
-import fr.epf.gestionclient.movietech.Movie
+import fr.epf.gestionclient.movietech.FavoriteBody
 import fr.epf.gestionclient.movietech.MovieDetails
+import fr.epf.gestionclient.movietech.MovieResponse
 import fr.epf.gestionclient.movietech.R
 import fr.epf.gestionclient.movietech.TMDBService
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -37,6 +37,30 @@ class MovieDetailsFragment : Fragment() {
     private lateinit var textViewOverview: TextView
     private lateinit var ratingBar: RatingBar
     private lateinit var affiche: ImageView
+    private lateinit var favbutton: ImageButton
+    private lateinit var favoritebody: FavoriteBody
+
+    val apiKey = "6f195923c63346a8d0677974810d5255"
+    private val accountId = 19649775
+    private var accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZjE5NTkyM2M2MzM0NmE4ZDA2Nzc5NzQ4MTBkNTI1NSIsInN1YiI6IjY0NmYyYzljODk0ZWQ2MDBiZjc3OTE2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gSdV8s24QLV2NYm4o_9_cvo6SfGCApmkXBIPT-Ui6Xw"
+
+
+    val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor { chain ->
+            val request = chain.request().newBuilder()
+                .addHeader("accept", "application/json")
+                .build()
+            chain.proceed(request)
+        }
+        .build()
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://api.themoviedb.org/3/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(okHttpClient)
+        .build()
+
+    val TMDBService = retrofit.create(TMDBService::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,60 +80,76 @@ class MovieDetailsFragment : Fragment() {
         textViewOverview = view.findViewById<TextView>(R.id.details_overview_body)
         ratingBar = view.findViewById<RatingBar>(R.id.details_ratingbar)
         affiche = view.findViewById<ImageView>(R.id.details_imageview)
+        favbutton = view.findViewById<ImageButton>(R.id.details_fav_button)
 
         val movieID = requireArguments().getInt("movieId")
-
-        fetchMovieDetails(movieID)
+        synchro(movieID)
 
         return view
 
     }
 
-    fun fetchMovieDetails(movieID: Int) {
-
-        val apiKey = "6f195923c63346a8d0677974810d5255"
-
-        val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor { chain ->
-                val request = chain.request().newBuilder()
-                    .addHeader("accept", "application/json")
-                    .build()
-                chain.proceed(request)
+    private suspend fun getMovieDetails(movieID: Int): MovieDetails? {
+        return withContext(Dispatchers.IO) {
+            val response = TMDBService.getMovieDetails(movieID, apiKey, "en-US", "credits")
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.e("TAG", "Request failed: ${response.code()} - ${response.message()}")
+                null
             }
-            .build()
+        }
+    }
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
 
-        val TMDBService = retrofit.create(TMDBService::class.java)
-
-        //val movieID = requireArguments().getInt("movieId")
-
-        lifecycleScope.launch {
-            try {
-                val response = withContext(Dispatchers.IO) {
-                    TMDBService.getMovieDetails(movieID, apiKey, "en-US", "credits")
+    private fun synchro(movieID: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val movieDetails = getMovieDetails(movieID)
+            textViewTitle.text = movieDetails?.title
+            textViewRuntime.text = "${movieDetails?.runtime} min"
+            textViewOverview.text = movieDetails?.overview
+            textViewReleaseDate.text = movieDetails?.release_date
+            ratingBar.rating = movieDetails?.vote_average?.toFloat()?.div(2) ?: 0f
+            val posterUrl = "https://image.tmdb.org/t/p/original" + movieDetails?.poster_path
+            Picasso.get()
+                .load(posterUrl)
+                .into(affiche)
+            checkFavorites(movieID)
+            favbutton.setOnClickListener {
+                CoroutineScope(Dispatchers.Main).launch {
+                    addOrRemoveFavorite(movieID)
                 }
-                if (response.isSuccessful) {
-                    val movieDetails = response.body()
-                    textViewTitle.text = movieDetails?.title
-                    textViewRuntime.text = "${movieDetails?.runtime} min"
-                    textViewOverview.text = movieDetails?.overview
-                    textViewReleaseDate?.text = movieDetails?.release_date
-                    ratingBar.rating = movieDetails?.vote_average?.toFloat()?.div(2) ?: 0f
-                    val posterUrl = "https://image.tmdb.org/t/p/original" + movieDetails?.poster_path
-                    Picasso.get()
-                        .load(posterUrl)
-                        .into(affiche)
+            }
+        }
+    }
 
-                    //val imageUrl = "https://image.tmdb.org/t/p/original" + movieDetails?.poster_path
-                    //affiche.imageView= Picasso.get().load(imageUrl).into(affiche).imageAlpha)}
-                    //affiche.setImageResource(R.drawable.ic_launcher_background)
-                } else {
-                    Log.e("TAG", "Request failed: ${response.code()} - ${response.message()}")
+    private suspend fun addOrRemoveFavorite(movieID: Int){
+        val favoriteMovies = getFavoriteMovies(movieID)
+        val movie = favoriteMovies?.results?.find { it.id == movieID }
+        if(movie != null){
+            favoritebody = FavoriteBody("movie", movieID, false)
+            addFavoriteMovies(favoritebody)
+            favbutton.background = resources.getDrawable(R.drawable.baseline_favorite_border_24)
+        } else{
+            favoritebody = FavoriteBody("movie", movieID, true)
+            addFavoriteMovies(favoritebody)
+            favbutton.background = resources.getDrawable(R.drawable.baseline_favorite_24)
+        }
+    }
+
+    private suspend fun checkFavorites(movieID: Int){
+        val favoriteMovies = getFavoriteMovies(movieID)
+        val movie = favoriteMovies?.results?.find { it.id == movieID }
+        if(movie != null){ favbutton.background = resources.getDrawable(R.drawable.baseline_favorite_24) }
+        else{favbutton.background = resources.getDrawable(R.drawable.baseline_favorite_border_24)}
+    }
+
+
+    private fun addFavoriteMovies(favoritebody : FavoriteBody) {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                withContext(Dispatchers.IO) {
+                    TMDBService.addFavoriteMovies(accountId ,"Bearer $accessToken", favoritebody)
                 }
             } catch (e: Exception) {
                 Log.e("TAG", "Error: ${e.message}")
@@ -117,35 +157,15 @@ class MovieDetailsFragment : Fragment() {
         }
     }
 
-        /*runBlocking {
-            try {
-                val response = TMDBService.getMovieDetails(movieID, apiKey, "en-US", "credits")
-                if (response.isSuccessful) {
-                    val movieDetails = response.body()
-
-
-                    //if (movieDetails != null) {
-                    textViewTitle?.text = movieDetails?.title
-                    //textViewGenre?.text = movieDetails.genres.joinToString { it.name }
-                    textViewRuntime?.text = "${movieDetails?.runtime} minutes"
-                    textViewOverview?.text = movieDetails?.overview
-                    textViewReleaseDate?.text = movieDetails?.release_date
-                    //ratingBar?.rating = movieDetails?.vote_average?.toFloat() / 2
-                    ratingBar?.rating = movieDetails?.vote_average?.toFloat()?.div(2) ?: 0f
-                    affiche?.setImageResource(R.drawable.ic_launcher_background)
-                    //}
-                } else {
-                    Log.e("TAG", "Request failed: ${response.code()} - ${response.message()}")
-                }
-            } catch (e: Exception) {
-                Log.e("TAG", "Error: ${e.message}")
+    private suspend fun getFavoriteMovies(movieID: Int) : MovieResponse? {
+        return withContext(Dispatchers.IO) {
+            val response = TMDBService.getFavoriteMovies(accountId, "Bearer $accessToken")
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.e("TAG", "Request failed: ${response.code()} - ${response.message()}")
+                null
             }
-
         }
-
-    }*/
-
-
-}
-
+    }}
 
