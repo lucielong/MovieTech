@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="80dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Genres:"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="40dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_action"
+                    android:text="  Action"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_action"/>
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_adventure"
+                    android:text="  Adventure"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_adventure"/>
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/genre_animation"
+                        android:text="  Animation"
+                        android:textSize="16sp"
+                        android:id="@+id/checkbox_animation"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_comedy"
+                    android:text="  Comedy"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_comedy"/>
+
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_crime"
+                    android:text="  Crime"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_crime"/>
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/genre_western"
+                        android:text="  Western"
+                        android:textSize="16sp"
+                        android:id="@+id/checkbox_western"/>
+
+
+                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_drama"
+                    android:text="  Drama"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_drama"/>
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_family"
+                    android:text="  Family"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_family"/>
+
+                    <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_fantasy"
+                    android:text="  Fantasy"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_fantasy"/>
+
+                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_history"
+                    android:text="  History"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_history"/>
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_horror"
+                    android:text="  Horror"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_horror"/>
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_music"
+                    android:text="  Music"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_music"/>
+
+                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_mystery"
+                    android:text="  Mystery"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_mystery"/>
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_romance"
+                    android:text="  Romance"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_romance"/>
+
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/genre_war"
+                        android:text="  War"
+                        android:textSize="16sp"
+                        android:id="@+id/checkbox_war"/>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+
+
+
+                <CheckBox
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/genre_thriller"
+                    android:text="  Thriller"
+                    android:textSize="16sp"
+                    android:id="@+id/checkbox_thriller"/>
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/genre_tv_movie"
+                        android:text="  TV Movie"
+                        android:textSize="16sp"
+                        android:id="@+id/checkbox_tvmovie"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/genre_science_fiction"
+                        android:text="  Science Fiction"
+                        android:textSize="16sp"
+                        android:id="@+id/checkbox_sciencefiction"/>
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/genre_documentary"
+                        android:text="  Documentary"
+                        android:textSize="16sp"
+                        android:id="@+id/checkbox_documentary"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Movie score:"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="40dp"/>
+
+        <com.google.android.material.slider.RangeSlider
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/range_slider"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:valueFrom="0"
+            android:valueTo="10"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="40dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Sort by:"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spinner_sortby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Include adult movies:"
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:id="@+id/switch_adult"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Apply"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/button_apply"/>
+
+
+
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

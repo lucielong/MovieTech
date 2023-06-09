@@ -50,6 +50,13 @@
         <argument
             android:name="with_genres"
             app:argType="string" />
+        <action
+            android:id="@+id/action_advanced_search"
+            app:destination="@id/advanced_search_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
 
@@ -134,5 +141,54 @@
         android:name="fr.epf.gestionclient.movietech.ui.recommendations.RecommendationsFragment"
         android:label="Recommendations"
         tools:layout="@layout/fragment_recommendations"/>
+
+    <fragment
+        android:id="@+id/advanced_search_fragment"
+        android:name="fr.epf.gestionclient.movietech.ui.home.AdvancedSearchFragment"
+        android:label="Advanced Search"
+        tools:layout="@layout/fragment_advanced_search">
+        <action
+            android:id="@+id/action_advanced_search_results"
+            app:destination="@id/advanced_search_results_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            />
+        <argument
+            android:name="genres"
+            app:argType="string" />
+
+        <argument
+            android:name="sortby"
+            app:argType="string" />
+
+        <argument
+            android:name="min"
+            app:argType="integer" />
+
+        <argument
+            android:name="max"
+            app:argType="integer" />
+
+        <argument
+            android:name="adult"
+            app:argType="boolean" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/advanced_search_results_fragment"
+        android:name="fr.epf.gestionclient.movietech.ui.home.AdvancedSearchResultsFragment"
+        android:label="Advanced Search Results"
+        tools:layout="@layout/fragment_advanced_search_results">
+
+        <action
+            android:id="@+id/action_get_details"
+            app:destination="@id/navigation_details"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 
 </navigation>

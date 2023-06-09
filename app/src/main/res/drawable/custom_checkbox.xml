@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- État coché -->
+    <item android:drawable="@drawable/button_box" android:state_checked="true" />
+    <!-- État décoché -->
+    <item android:drawable="@drawable/search_box" />
+</selector>

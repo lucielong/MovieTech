@@ -125,13 +125,27 @@ class MovieDetailsFragment : Fragment() {
             val movieDetails = getMovieDetails(movieID)
             textViewTitle.text = movieDetails?.title
             textViewRuntime.text = "${movieDetails?.runtime} min"
-            textViewOverview.text = movieDetails?.overview
-            textViewReleaseDate.text = movieDetails?.release_date
+            if (movieDetails?.overview  == ""){
+                textViewOverview.text = "No overview available"
+            } else{
+                textViewOverview.text = movieDetails?.overview}
+
+            if (movieDetails?.release_date  == ""){
+                textViewReleaseDate.text = "Unknown release date"
+            } else{
+            textViewReleaseDate.text = movieDetails?.release_date}
+            if (movieDetails?.genres?.size != 0) {
+                textViewGenre.text = movieDetails?.genres?.map { it.name }?.reduce { acc, s -> "$acc, $s"}
+            } else {
+                textViewGenre.text = "No genre available"
+            }
             ratingBar.rating = movieDetails?.vote_average?.toFloat()?.div(2) ?: 0f
-            val posterUrl = "https://image.tmdb.org/t/p/original" + movieDetails?.poster_path
-            Picasso.get()
-                .load(posterUrl)
-                .into(affiche)
+            if (movieDetails?.poster_path != null){
+                val imageUrl = "https://image.tmdb.org/t/p/original" + movieDetails?.poster_path
+                Picasso.get().load(imageUrl).into(affiche)}
+            else{
+                affiche.setImageResource(R.drawable.baseline_local_movies_24)
+            }
             checkFavorites(movieID)
             favbutton.setOnClickListener {
                 CoroutineScope(Dispatchers.Main).launch {

@@ -184,6 +184,9 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_genre, with_genres)
         }
 
+        binding.AdvancedSearchButton.setOnClickListener {
+            findNavController().navigate(R.id.action_advanced_search)
+        }
         synchro()
         return root
     }

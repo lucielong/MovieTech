@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.epf.gestionclient.movietech.Movie
-import fr.epf.gestionclient.movietech.R
-import fr.epf.gestionclient.movietech.SessionRequest
 import fr.epf.gestionclient.movietech.TMDBService
 import fr.epf.gestionclient.movietech.databinding.FragmentFavoritesBinding
 import fr.epf.gestionclient.movietech.ui.home.MovieAdapter
@@ -23,8 +21,6 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Query
 
 
 class FavoritesFragment : Fragment() {

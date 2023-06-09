@@ -90,6 +90,17 @@ interface TMDBService {
         @Query("page") page: Int
     ): Response<RecommendationsResponse>
 
+    @GET("discover/movie")
+    suspend fun getMoviesAdvancedSearch(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("sort_by") sort_by: String,
+        @Query("with_genres") with_genres: String,
+        @Query("vote_average.gte") vote_average_gte: Float,
+        @Query("vote_average.lte") vote_average_lte: Float,
+        @Query("adult") adult: Boolean
+    ): Response<MovieResponse>
+
 }
 
 data class RecommendationsResponse(
@@ -121,7 +132,7 @@ data class MovieDetails(
     val backdrop_path: String,
     val belongs_to_collection : Any?,
     val budget: Int,
-    val genre_ids: List<Genre>,
+    val genres: List<Genre>,
     val homepage : String,
     val id: Int,
     val imdb_id : String,
@@ -179,22 +190,6 @@ data class SpokenLanguage(
     val iso_639_1: String,
     val name: String
 )
-
-data class TokenResponse(
-    val success: Boolean,
-    val expires_at: String,
-    val request_token: String
-)
-
-data class SessionRequest(
-    val request_token: String
-)
-
-data class SessionResponse(
-    val success: Boolean,
-    val session_id: String
-)
-
 
 data class FavoriteResponse(
     val status_code: Int,

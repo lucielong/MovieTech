@@ -54,11 +54,12 @@ class MovieAdapter(var movies: List<Movie>, val context: Context) : RecyclerView
         val ratingBar = view.findViewById<RatingBar>(R.id.movie_view_ratingbar)
         ratingBar.rating = movie.vote_average.toFloat()/2
         val textViewDate = view.findViewById<TextView>(R.id.movie_view_datetext)
+        if (movie.release_date != null){
         if (movie.release_date.length > 4){
         textViewDate.text = movie.release_date.subSequence(0,4)}
         else{
             textViewDate.text = "N/A"
-        }
+        }}
         imageView.setOnClickListener{
             val navController = Navigation.findNavController(view)
 

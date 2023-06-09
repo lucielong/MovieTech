@@ -212,23 +212,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="80dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Loading..."
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:gravity="fill"/>
+
+                <Button
+                    android:id="@+id/recommendations_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="You might also like"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="120dp"/>
+
             </LinearLayout>
 
-            <Button
-                android:id="@+id/recommendations_button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="You might also like"
-                android:layout_marginEnd="70dp"
-                android:layout_marginStart="70dp"
-                android:layout_marginBottom="120dp"/>
+
 
         </LinearLayout>
 
